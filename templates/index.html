@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Skin Disease Detection</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Skin Disease Detection — Image Classification</h1>
+      <div class="small">Model: MobileNetV2 fine-tuned</div>
+    </div>
+
+    <div class="upload-area">
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div class="box">
+          <div class="preview"><img id="previewImg" src="/static/img/placeholder.svg" alt="preview"></div>
+          <div style="margin-top:10px" class="small">Preview</div>
+        </div>
+
+        <div class="box">
+          <div style="padding:8px"><strong>Most similar dataset image</strong></div>
+          <div style="display:flex;align-items:center;gap:8px;padding:8px">
+            <img id="matchedImg" src="/static/img/placeholder.svg" alt="matched" style="width:140px;height:100px;object-fit:cover;border-radius:6px;border:1px solid #eef5ff">
+            <div>
+              <div id="matchedLabel" class="small">No match yet</div>
+              <div id="matchedSim" class="small" style="margin-top:6px;color:#556"> </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <label class="box" style="cursor:pointer;align-items:flex-start">
+          <div style="padding:12px;width:100%">
+            <strong>Upload an image</strong>
+            <p class="small">Choose a clear photo of the affected skin area.</p>
+            <input id="fileInput" type="file" accept="image/*">
+          </div>
+        </label>
+
+        <button id="predictBtn" class="btn">Predict</button>
+        <div id="result" class="result">No prediction yet.</div>
+        <div class="footer">Tip: Crop to the affected area for better results.</div>
+      </div>
+    </div>
+  </div>
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
+    </body>
+  </html>

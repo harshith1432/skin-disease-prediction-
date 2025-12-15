@@ -1,0 +1,62 @@
+*{box-sizing:border-box;font-family:Inter, system-ui, Arial, sans-serif}
+body{background:#f4f6fb;margin:0;padding:0}
+.container{max-width:1100px}
+.card{border-radius:10px}
+.navbar-brand{font-weight:600}
+.preview img{max-width:100%;max-height:320px;border-radius:8px}
+.btn-primary{background:#0b5cff;border-color:#0b5cff}
+#result{padding:12px;border-radius:8px;background:#fff;border:1px solid #eef5ff;color:#05204a}
+.small{font-size:13px;color:#6b788a}
+.text-muted.small{font-size:12px}
+.card .card-body h5{margin-bottom:0.75rem}
+.img-fluid.rounded{background:#fff;border:1px solid #eef5ff;padding:6px}
+/* Responsive adjustments */
+@media (max-width: 900px) {
+	.container{padding:12px}
+	.card{margin-bottom:12px}
+	.d-flex.gap-3{flex-direction:column}
+	.preview img{max-height:240px}
+}
+
+.suggestion-card{background:linear-gradient(180deg,#ffffff,#fbfdff);border:1px solid #e6eefc;border-radius:10px}
+.suggestion-icon{width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:#eef6ff;border-radius:8px;font-size:20px}
+.small.text-danger{color:#b42222}
+.suggestion-card ul{margin:6px 0 0 18px;padding:0}
+.suggestion-card li{margin-bottom:6px}
+
+/* Footer spacing on small screens */
+footer{margin-top:18px}
+
+/* Animations */
+.fade-in{animation:fadeIn .35s ease-out both}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+.matched-img{transition:opacity .35s ease,transform .35s ease}
+.matched-img.enter{opacity:0;transform:scale(.98)}
+.matched-img.enter.show{opacity:1;transform:scale(1)}
+
+.btn.loading{position:relative;color:transparent}
+.btn.loading .spinner-in-btn{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:1rem;height:1rem}
+
+.predicting-overlay{position:absolute;inset:0;background:rgba(255,255,255,0.6);display:flex;align-items:center;justify-content:center;border-radius:10px}
+
+/* Chat styles */
+#chatWindow{background:#fff;border-radius:8px}
+#chatWindow div{padding:6px}
+#chatWindow .small{font-size:12px}
+#chatInput{min-width:0}
+
+/* Retrieved examples grid inside chat */
+.retrieved-grid{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.retrieved-item{width:84px;display:flex;flex-direction:column;align-items:center}
+.retrieved-thumb{width:80px;height:56px;object-fit:cover;border-radius:6px;border:1px solid #eef5ff;cursor:pointer;background:#fff}
+.retrieved-caption{margin-top:6px;text-align:center;width:100%}
+
+@media (max-width: 600px){
+	.retrieved-item{width:68px}
+	.retrieved-thumb{width:64px;height:48px}
+}
+
+.retrieved-link{color:#0b5cff;text-decoration:none;display:inline-block}
+.retrieved-link:hover{text-decoration:underline}
+.retrieved-score{margin-top:4px}
