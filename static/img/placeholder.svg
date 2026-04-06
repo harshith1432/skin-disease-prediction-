@@ -1,0 +1,6 @@
+<svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="240" height="240" rx="12" fill="#F8FAFC"/>
+  <path d="M110 90H130M120 80V100" stroke="#CBD5E1" stroke-width="2" stroke-linecap="round"/>
+  <rect x="70" y="110" width="100" height="60" rx="4" stroke="#CBD5E1" stroke-width="2"/>
+  <text x="50%" y="190" text-anchor="middle" fill="#94A3B8" font-family="Figtree" font-size="12">NO IMAGE SELECTED</text>
+</svg>

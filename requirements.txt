@@ -1,0 +1,10 @@
+flask>=2.0.0
+tensorflow>=2.10
+pillow
+numpy
+scikit-learn
+matplotlib
+gunicorn
+python-dotenv
+requests
+psycopg2-binary

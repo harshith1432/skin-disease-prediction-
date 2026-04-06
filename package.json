@@ -1,0 +1,25 @@
+{
+  "dependencies": {
+    "motion": "^12.38.0",
+    "stitch-mcp": "^1.3.2"
+  },
+  "name": "skin-disease-identific-using-ai",
+  "version": "1.0.0",
+  "description": "A local prototype for **skin disease image classification** using **MobileNetV2**, a Flask-based dashboard, and a retrieval-augmented assistant using precomputed dataset embeddings.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/harshith1432/skin-disease-prediction-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/harshith1432/skin-disease-prediction-/issues"
+  },
+  "homepage": "https://github.com/harshith1432/skin-disease-prediction-#readme"
+}

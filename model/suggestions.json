@@ -1,0 +1,90 @@
+{
+  "acne": {
+    "title": "Acne — common care",
+    "short": "Acne is common; start with gentle skin care and OTC treatments.",
+    "do": [
+      "Use gentle, fragrance-free cleansers twice daily",
+      "Apply non-comedogenic moisturizers",
+      "Consider OTC topical benzoyl peroxide or salicylic acid"
+    ],
+    "dont": [
+      "Do not pick or squeeze lesions",
+      "Avoid harsh scrubs or abrasive treatments"
+    ],
+    "medicines": [
+      "OTC: benzoyl peroxide, salicylic acid",
+      "Prescription (see dermatologist): topical retinoids, topical antibiotics, oral antibiotics"
+    ],
+    "care_types": ["Topical OTC", "Topical prescription", "See dermatologist if severe"],
+    "home_remedies": [
+      "Wash gently with a mild cleanser twice daily",
+      "Apply spot treatment with benzoyl peroxide (OTC) as directed",
+      "Avoid heavy makeup and oil-based moisturizers",
+      "Use cold compress for painful inflamed spots"
+    ],
+    "disclaimer": "Informational only. Consult a healthcare professional before starting medications."
+  },
+  "rash": {
+    "title": "Rash — general guidance",
+    "short": "Rashes have many causes; basic care soothes skin while you seek diagnosis.",
+    "do": [
+      "Keep the area clean and dry",
+      "Use cool compresses for itching",
+      "Use gentle emollients to reduce dryness"
+    ],
+    "dont": [
+      "Avoid unknown topical steroids without advice",
+      "Do not apply home remedies that cause irritation"
+    ],
+    "medicines": ["Topical emollients; antihistamines for itch (oral)", "Topical steroids only under physician guidance"],
+    "care_types": ["Symptomatic care", "Allergy testing if suspected", "Dermatology consult"],
+    "home_remedies": [
+      "Cool compresses to reduce itching and inflammation",
+      "Oatmeal baths (colloidal oatmeal) to soothe skin",
+      "Avoid known irritants (fragrances, harsh soaps) and wear loose cotton clothing"
+    ],
+    "disclaimer": "Informational only. Seek professional care for persistent or spreading rashes."
+  },
+  "eczema": {
+    "title": "Eczema — soothing and maintenance",
+    "short": "Eczema benefits from moisturization and trigger avoidance.",
+    "do": ["Apply emollients liberally and frequently", "Use lukewarm showers and pat dry", "Identify and avoid triggers (fragrances, harsh soaps)", "Use topical corticosteroids for flares under advice"],
+    "dont": ["Avoid long hot baths that dry skin", "Do not stop prescribed medication abruptly"],
+    "medicines": ["Emollients/moisturizers", "Topical corticosteroids (under doctor)", "Topical calcineurin inhibitors"],
+    "care_types": ["Daily emollient therapy", "Topical anti-inflammatory for flares", "Dermatology follow-up for chronic cases"],
+    "home_remedies": [
+      "Apply fragrance-free emollients immediately after bathing",
+      "Use lukewarm (not hot) showers and pat skin dry",
+      "Avoid triggers like wool or strong detergents; use gentle soaps"
+    ],
+    "disclaimer": "Informational only. Follow medical advice for medicated treatments."
+  },
+  "allergy": {
+    "title": "Allergic reaction — what to do",
+    "short": "Allergic skin reactions range from mild to severe; assess symptoms promptly.",
+    "do": ["Stop suspected exposure to allergen", "Use cool compresses and emollients", "Consider oral antihistamines for itch"],
+    "dont": ["Do not apply strong topical medications without advice", "Avoid re-exposure to known allergens"],
+    "medicines": ["Oral antihistamines (cetirizine/loratadine)", "Topical emollients; topical steroids under physician guidance"],
+    "care_types": ["Avoidance", "Symptom relief (antihistamines)", "Specialist allergy/dermatology testing if recurrent"],
+    "home_remedies": [
+      "Stop using the suspected product or avoid the trigger",
+      "Cool compresses and bland emollients for irritated patches",
+      "Oral antihistamines (OTC) can reduce itching — follow package instructions"
+    ],
+    "disclaimer": "Informational only. Seek urgent care for breathing difficulty or swelling."
+  },
+  "fungal": {
+    "title": "Fungal infection — antifungal care",
+    "short": "Fungal infections respond well to antifungal treatments when used correctly.",
+    "do": ["Keep the area clean and dry", "Use topical antifungal creams for localized infections", "Wash towels and clothing regularly"],
+    "dont": ["Avoid steroid-only creams on infected areas without diagnosis", "Do not share personal items like towels"],
+    "medicines": ["Topical antifungals: clotrimazole, terbinafine", "Oral antifungals for extensive infections (doctor-prescribed)"],
+    "care_types": ["Topical antifungal treatment", "Oral antifungals for resistant/widespread cases", "Dermatology consult if unclear"],
+    "home_remedies": [
+      "Keep the area clean and thoroughly dry",
+      "Apply OTC antifungal cream (clotrimazole, terbinafine) as directed",
+      "Avoid tight, damp clothing; change socks and underwear daily"
+    ],
+    "disclaimer": "Informational only. Consult your doctor for prescription antifungals."
+  }
+}

@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>DermaCare AI — Professional Skin Analysis</title>
+  <link rel="icon" href="/static/img/logo.svg" type="image/svg+xml">
+  <!-- Fonts & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="/static/css/style.css">
+  <style>
+    .login-container {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-lg);
+    }
+    .landing-card {
+      max-width: 1000px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      overflow: hidden;
+    }
+    .landing-hero {
+      background: linear-gradient(135deg, var(--color-primary), #0e7490);
+      color: white;
+      padding: var(--space-2xl);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+    .hero-pattern {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.1;
+      background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0);
+      background-size: 24px 24px;
+    }
+    .landing-form {
+      padding: var(--space-2xl);
+      background: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .feature-item {
+      display: flex;
+      gap: var(--space-md);
+      margin-top: var(--space-xl);
+    }
+    .feature-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    @media (max-width: 850px) {
+      .landing-card {
+        grid-template-columns: 1fr;
+      }
+      .landing-hero {
+        padding: var(--space-xl);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <div class="glass-panel landing-card animate-slide-up">
+      <!-- Left: Content/Social Proof -->
+      <div class="landing-hero">
+        <div class="hero-pattern"></div>
+        <div class="d-flex align-items-center mb-4">
+          <div class="bg-white rounded d-flex align-items-center justify-content-center p-2 shadow-sm" style="width: 48px; height: 48px;">
+            <img src="/static/img/logo.svg" alt="DermaCare AI" style="width: 100%; height: 100%; object-fit: contain;">
+          </div>
+          <h2 class="ms-3 mb-0 text-white">DermaCare AI</h2>
+        </div>
+        <h1 class="text-white mb-4">Professional skin analysis at your fingertips.</h1>
+        <p class="text-white opacity-80 mb-5">Our advanced AI uses deep learning to identify common skin conditions with over 90% accuracy. Get instant guidance and care recommendations in seconds.</p>
+        
+        <div class="feature-item">
+          <div class="feature-icon"><i class="bi bi-shield-check"></i></div>
+          <div>
+            <h5 class="text-white mb-1">Privacy Focused</h5>
+            <p class="text-white opacity-70 small">Secure encryption for all clinical data.</p>
+          </div>
+        </div>
+        
+        <div class="feature-item mt-4">
+          <div class="feature-icon"><i class="bi bi-cpu"></i></div>
+          <div>
+            <h5 class="text-white mb-1">AI-Powered</h5>
+            <p class="text-white opacity-70 small">MobileNetV2 architecture for high precision.</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Right: Login Form -->
+      <div class="landing-form">
+        <h3 class="mb-2">Welcome Back</h3>
+        <p class="text-muted mb-4">Sign in to access your dashboard.</p>
+        
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, msg in messages %}
+            <div class="alert alert-{{category}} py-2 small mb-3 border-0" style="background: #fee2e2; color: #991b1b;">
+              <i class="bi bi-exclamation-circle me-2"></i>{{msg}}
+            </div>
+          {% endfor %}
+        {% endif %}
+        {% endwith %}
+        
+        <form method="post" action="{{ url_for('login') }}">
+          <div class="mb-3">
+            <label class="form-label fw-bold small">Username</label>
+            <input name="username" class="form-control py-2" style="border-radius: 10px;" placeholder="admin" required>
+          </div>
+          <div class="mb-4">
+            <label class="form-label fw-bold small">Password</label>
+            <div class="position-relative">
+              <input id="loginPassword" name="password" type="password" class="form-control py-2 pe-5" style="border-radius: 10px;" placeholder="••••••••" required>
+              <i class="bi bi-eye-slash position-absolute top-50 end-0 translate-middle-y me-3 text-muted" style="cursor: pointer; z-index: 10;" onclick="togglePassword('loginPassword', this)"></i>
+            </div>
+          </div>
+          
+          <button class="btn-premier btn-premier-primary w-100 mb-3">
+            Secure Login <i class="bi bi-arrow-right"></i>
+          </button>
+          
+          <div class="text-center mt-4">
+            <p class="small text-muted mb-0">
+              Don't have an account? <a href="{{ url_for('register') }}" class="text-decoration-none fw-bold" style="color: var(--color-primary);">Sign Up</a>
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script>
+    function togglePassword(inputId, icon) {
+      const input = document.getElementById(inputId);
+      if (input.type === "password") {
+        input.type = "text";
+        icon.classList.remove("bi-eye-slash");
+        icon.classList.add("bi-eye");
+      } else {
+        input.type = "password";
+        icon.classList.remove("bi-eye");
+        icon.classList.add("bi-eye-slash");
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Dashboard — DermaCare AI</title>
+  <link rel="icon" href="/static/img/logo.svg" type="image/svg+xml">
+  <!-- Fonts & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+  <!-- Premier Navigation -->
+  <nav class="premier-nav">
+    <div class="nav-content">
+      <a class="d-flex align-items-center text-decoration-none" href="#">
+        <img src="/static/img/logo.svg" alt="DermaCare AI" style="height:32px">
+        <span class="ms-2 h4 mb-0 fw-bold" style="color: var(--color-primary);">DermaCare AI</span>
+      </a>
+      <div class="d-flex align-items-center gap-4">
+
+        <a href="{{ url_for('logout') }}" class="btn-premier btn-premier-secondary py-2 px-3 small">
+          <i class="bi bi-box-arrow-right"></i> Logout
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="app-container">
+    <!-- Column 1: Scan History (Left) -->
+    <aside class="glass-panel p-4 d-flex flex-column h-100">
+      <h5 class="mb-4 d-flex align-items-center">
+        <i class="bi bi-clock-history me-2 text-primary"></i> Scan history
+      </h5>
+      <div id="historyList" class="scroll-y flex-grow-1">
+        <div class="text-center py-5 text-muted small">
+          <i class="bi bi-journal-medical display-6 mb-2"></i>
+          <p>Your previous scans will appear here.</p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Column 2: Analysis & Results (Center) -->
+    <section class="scroll-y">
+      <div class="glass-panel p-4 mb-4">
+        <div class="d-flex justify-content-between align-items-start mb-4">
+          <h4 class="m-0"><i class="bi bi-shield-check me-2 text-primary"></i> Diagnostic Suite</h4>
+          <button class="btn-premier btn-premier-secondary py-1 px-3 small"
+            onclick="document.getElementById('fileInput').click()">
+            <i class="bi bi-upload"></i> New Scan
+          </button>
+        </div>
+
+        <div class="upload-zone mb-4" onclick="document.getElementById('fileInput').click()">
+          <div class="preview-container glass-card d-none" id="previewContainer">
+            <img id="previewImg" src="/static/img/placeholder.svg" alt="Uploaded Scan">
+          </div>
+          <div id="uploadPrompt" class="py-4">
+            <i class="bi bi-cloud-arrow-up display-5 text-primary opacity-50 mb-2"></i>
+            <p class="small text-muted mb-0">Drag and drop or click to upload clinical scan</p>
+          </div>
+          <input id="fileInput" type="file" accept="image/*" class="d-none">
+        </div>
+
+        <button id="predictBtn" class="btn-premier btn-premier-primary w-100 py-3 mb-4 shadow-lg">
+          <i class="bi bi-stars me-2"></i> Analyze with DermaCare Intelligence
+        </button>
+
+        <div id="resultPlaceholder" class="text-center py-5 glass-card bg-light border-0">
+          <i class="bi bi-clipboard-pulse display-4 text-muted opacity-20"></i>
+          <p class="text-muted mt-2">Upload a clinical image to start analysis.</p>
+        </div>
+
+        <div id="result" class="fade-in d-none">
+          <!-- Dynamic Prediction Result with Circular Gauge -->
+          <div class="d-flex align-items-center gap-4 mb-4">
+            <div class="circular-gauge">
+              <svg viewBox="0 0 100 100">
+                <circle class="gauge-bg" cx="50" cy="50" r="45"></circle>
+                <circle id="gaugeFill" class="gauge-fill" cx="50" cy="50" r="45"></circle>
+              </svg>
+              <div class="position-absolute text-center">
+                <span id="confidenceValue" class="h3 fw-bold mb-0">0%</span>
+                <div class="x-small text-muted">Confidence</div>
+              </div>
+            </div>
+            <div>
+              <h2 id="predictionLabel" class="h1 text-primary mb-1">Analyzing...</h2>
+              <p class="text-muted small">Condition identified with high precision by DermaCare AI.</p>
+            </div>
+          </div>
+          <div id="topPredictions" class="glass-card p-3">
+            <!-- Top K results populate here -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Dataset Match Case -->
+      <div class="glass-panel p-4 mb-4">
+        <h5 class="mb-3 d-flex align-items-center">
+          <i class="bi bi-journal-bookmark-fill me-2 text-primary"></i> Visual Reference Case
+        </h5>
+        <div class="glass-card p-3 d-flex flex-column flex-md-row gap-4 align-items-center">
+          <div style="width: 160px; height: 120px; flex-shrink: 0;" class="rounded-3 overflow-hidden border bg-light d-flex align-items-center justify-content-center">
+            <img id="matchedImg" src="/static/img/placeholder.svg" style="width:100%; height:100%; object-fit:cover;" class="d-none">
+            <div id="matchedPlaceholder" class="text-center text-muted x-small">
+              <i class="bi bi-image mb-1 d-block opacity-50 h4"></i>
+              No match yet
+            </div>
+          </div>
+          <div>
+            <h6 id="matchedLabel" class="mb-1 text-primary fw-bold font-heading">Historical match</h6>
+            <div class="badge bg-secondary-light text-primary mb-2" id="matchedSim">Similarity: 0%</div>
+            <p class="x-small text-muted mt-1">This reference case from our clinical database shows the most visual
+              overlap with your scan.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Smart Guidance Module -->
+      <div class="glass-panel p-4">
+        <h5 class="mb-3 d-flex align-items-center">
+          <i class="bi bi-lightning-charge-fill me-2 text-primary"></i> Smart Guidance
+        </h5>
+        <div class="glass-card p-3 bg-white" style="border-left: 4px solid var(--color-primary);">
+          <div id="suggestions" class="scroll-y" style="max-height: 350px; overflow-y: auto; padding-right: 8px;">
+            <p class="x-small text-muted mb-0">Clinical recommendations will appear here after diagnostic analysis.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Column 3: Assistant & Guidance (Right) -->
+    <aside class="glass-panel p-4 d-flex flex-column h-100">
+      <h5 class="mb-4 d-flex align-items-center">
+        <i class="bi bi-chat-dots me-2 text-primary"></i> Specialist Assistant
+      </h5>
+
+      <div id="chatWindow" class="scroll-y flex-grow-1 mb-3">
+        <div class="chat-bubble chat-bubble-ai mb-3 shadow-none border">
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <div class="bg-primary-container rounded-circle p-1"><i class="bi bi-robot text-white small"></i></div>
+            <span class="small fw-bold">Dr. Derma AI</span>
+          </div>
+          Welcome! I can provide treatment guidance and answer questions about your analysis.
+        </div>
+      </div>
+
+      <div class="glass-card p-2 mb-3 bg-white">
+        <div class="d-flex gap-2">
+          <input id="chatInput" class="form-control border-0 bg-transparent" placeholder="Type a message...">
+          <button id="chatSend" class="btn btn-primary rounded-circle" style="width: 40px; height: 40px; padding: 0;">
+            <i class="bi bi-arrow-up-short h4 m-0"></i>
+          </button>
+        </div>
+      </div>
+
+    </aside>
+  </main>
+
+  <footer class="py-4 text-center">
+    <p class="x-small text-muted mb-0">© 2026 DermaCare AI Laboratory. For informational purposes only. Consult a doctor
+      for medical diagnosis.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="/static/js/app.js"></script>
+  <script>
+    // Simple state management for placeholder visibility
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.target.id === 'result') {
+          const placeholder = document.getElementById('resultPlaceholder');
+          if (mutation.target.innerHTML.trim() !== "") {
+            mutation.target.classList.remove('d-none');
+            placeholder.classList.add('d-none');
+          } else {
+            mutation.target.classList.add('d-none');
+            placeholder.classList.remove('d-none');
+          }
+        }
+      });
+    });
+    observer.observe(document.getElementById('result'), { childList: true });
+  </script>
+</body>
+</html>
